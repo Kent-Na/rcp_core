@@ -57,8 +57,8 @@ rcp_dict_node_ref rcp_dict_set_node(
 rcp_extern 
 void rcp_dict_unset_node(rcp_dict_ref dict, rcp_dict_node_ref node);
 
-rcp_dict_ref rcp_record_as_dict(rcp_record_ref rec);
-rcp_dict_ref rcp_dict_node_as_dict(
+rcp_extern rcp_dict_ref rcp_record_as_dict(rcp_record_ref rec);
+rcp_extern rcp_dict_ref rcp_dict_node_as_dict(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 ///

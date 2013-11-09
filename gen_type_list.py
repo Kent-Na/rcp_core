@@ -39,8 +39,8 @@ int rcp_{typeName}_compare(
 numberTypeHeaderTemplate="""
 rcp_extern int rcp_{typeName}_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-{cTypeName} rcp_record_as_{typeName}(rcp_record_ref rec);
-{cTypeName} rcp_dict_node_as_{typeName}(
+rcp_extern {cTypeName} rcp_record_as_{typeName}(rcp_record_ref rec);
+rcp_extern {cTypeName} rcp_dict_node_as_{typeName}(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 """
 

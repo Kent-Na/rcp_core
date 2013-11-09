@@ -5,66 +5,66 @@
 
 rcp_extern int rcp_pointer_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-void* rcp_record_as_pointer(rcp_record_ref rec);
-void* rcp_dict_node_as_pointer(
+rcp_extern void* rcp_record_as_pointer(rcp_record_ref rec);
+rcp_extern void* rcp_dict_node_as_pointer(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_uint8_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-uint8_t rcp_record_as_uint8(rcp_record_ref rec);
-uint8_t rcp_dict_node_as_uint8(
+rcp_extern uint8_t rcp_record_as_uint8(rcp_record_ref rec);
+rcp_extern uint8_t rcp_dict_node_as_uint8(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_uint16_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-uint16_t rcp_record_as_uint16(rcp_record_ref rec);
-uint16_t rcp_dict_node_as_uint16(
+rcp_extern uint16_t rcp_record_as_uint16(rcp_record_ref rec);
+rcp_extern uint16_t rcp_dict_node_as_uint16(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_uint32_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-uint32_t rcp_record_as_uint32(rcp_record_ref rec);
-uint32_t rcp_dict_node_as_uint32(
+rcp_extern uint32_t rcp_record_as_uint32(rcp_record_ref rec);
+rcp_extern uint32_t rcp_dict_node_as_uint32(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_uint64_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-uint64_t rcp_record_as_uint64(rcp_record_ref rec);
-uint64_t rcp_dict_node_as_uint64(
+rcp_extern uint64_t rcp_record_as_uint64(rcp_record_ref rec);
+rcp_extern uint64_t rcp_dict_node_as_uint64(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_int8_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-int8_t rcp_record_as_int8(rcp_record_ref rec);
-int8_t rcp_dict_node_as_int8(
+rcp_extern int8_t rcp_record_as_int8(rcp_record_ref rec);
+rcp_extern int8_t rcp_dict_node_as_int8(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_int16_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-int16_t rcp_record_as_int16(rcp_record_ref rec);
-int16_t rcp_dict_node_as_int16(
+rcp_extern int16_t rcp_record_as_int16(rcp_record_ref rec);
+rcp_extern int16_t rcp_dict_node_as_int16(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_int32_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-int32_t rcp_record_as_int32(rcp_record_ref rec);
-int32_t rcp_dict_node_as_int32(
+rcp_extern int32_t rcp_record_as_int32(rcp_record_ref rec);
+rcp_extern int32_t rcp_dict_node_as_int32(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_int64_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-int64_t rcp_record_as_int64(rcp_record_ref rec);
-int64_t rcp_dict_node_as_int64(
+rcp_extern int64_t rcp_record_as_int64(rcp_record_ref rec);
+rcp_extern int64_t rcp_dict_node_as_int64(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_float_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-float rcp_record_as_float(rcp_record_ref rec);
-float rcp_dict_node_as_float(
+rcp_extern float rcp_record_as_float(rcp_record_ref rec);
+rcp_extern float rcp_dict_node_as_float(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 rcp_extern int rcp_double_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r);
-double rcp_record_as_double(rcp_record_ref rec);
-double rcp_dict_node_as_double(
+rcp_extern double rcp_record_as_double(rcp_record_ref rec);
+rcp_extern double rcp_dict_node_as_double(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);

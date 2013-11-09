@@ -85,8 +85,8 @@ void rcp_array_resize(
 rcp_extern void rcp_array_clear_data(
 		rcp_type_ref array_type, rcp_array_ref array);
 
-rcp_array_ref rcp_record_as_array(rcp_record_ref rec);
-rcp_array_ref rcp_dict_node_as_array(
+rcp_extern rcp_array_ref rcp_record_as_array(rcp_record_ref rec);
+rcp_extern rcp_array_ref rcp_dict_node_as_array(
 		rcp_type_ref dict_type, rcp_dict_node_ref node);
 
 //array iterater
