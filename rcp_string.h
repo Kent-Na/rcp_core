@@ -2,6 +2,7 @@
 #include "def/rcp_type.h"
 #include "def/rcp_data.h"
 #include "def/rcp_record.h"
+#include "def/rcp_dict_node.h"
 
 #ifdef RCP_INTERNAL_STRUCTURE
 struct rcp_string_core{
@@ -34,3 +35,6 @@ rcp_extern void rcp_string_append_c_str(
 rcp_extern void rcp_string_set_c_str(
 		rcp_string_ref str, const char *c_str);
 
+rcp_string_ref rcp_record_as_string(rcp_record_ref rec);
+rcp_string_ref rcp_dict_node_as_string(
+		rcp_type_ref dict_type, rcp_dict_node_ref node);

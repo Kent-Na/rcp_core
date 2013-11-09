@@ -4,6 +4,8 @@
 #define RCP_INTERNAL_STRUCTURE
 #include "rcp_type.h"
 #include "rcp_type_list.h"
+#include "rcp_record.h"
+#include "rcp_dict.h"
 
 int rcp_pointer_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r){
@@ -12,6 +14,19 @@ int rcp_pointer_compare(
 	if (*(void**)l>*(void**)r)
 		return +1;
 	return 0;
+}
+
+void* rcp_record_as_pointer(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_pointer_type)
+		return 0;
+	return *(void**)rcp_record_data(rec);
+}
+
+void* rcp_dict_node_as_pointer(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_pointer_type)
+		return 0;
+	return *(void**)rcp_dict_node_data(dict_type, node);
 }
 
 int rcp_uint8_compare(
@@ -23,6 +38,19 @@ int rcp_uint8_compare(
 	return 0;
 }
 
+uint8_t rcp_record_as_uint8(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_uint8_type)
+		return 0;
+	return *(uint8_t*)rcp_record_data(rec);
+}
+
+uint8_t rcp_dict_node_as_uint8(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_uint8_type)
+		return 0;
+	return *(uint8_t*)rcp_dict_node_data(dict_type, node);
+}
+
 int rcp_uint16_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r){
 	if (*(uint16_t*)l<*(uint16_t*)r)
@@ -30,6 +58,19 @@ int rcp_uint16_compare(
 	if (*(uint16_t*)l>*(uint16_t*)r)
 		return +1;
 	return 0;
+}
+
+uint16_t rcp_record_as_uint16(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_uint16_type)
+		return 0;
+	return *(uint16_t*)rcp_record_data(rec);
+}
+
+uint16_t rcp_dict_node_as_uint16(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_uint16_type)
+		return 0;
+	return *(uint16_t*)rcp_dict_node_data(dict_type, node);
 }
 
 int rcp_uint32_compare(
@@ -41,6 +82,19 @@ int rcp_uint32_compare(
 	return 0;
 }
 
+uint32_t rcp_record_as_uint32(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_uint32_type)
+		return 0;
+	return *(uint32_t*)rcp_record_data(rec);
+}
+
+uint32_t rcp_dict_node_as_uint32(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_uint32_type)
+		return 0;
+	return *(uint32_t*)rcp_dict_node_data(dict_type, node);
+}
+
 int rcp_uint64_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r){
 	if (*(uint64_t*)l<*(uint64_t*)r)
@@ -48,6 +102,19 @@ int rcp_uint64_compare(
 	if (*(uint64_t*)l>*(uint64_t*)r)
 		return +1;
 	return 0;
+}
+
+uint64_t rcp_record_as_uint64(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_uint64_type)
+		return 0;
+	return *(uint64_t*)rcp_record_data(rec);
+}
+
+uint64_t rcp_dict_node_as_uint64(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_uint64_type)
+		return 0;
+	return *(uint64_t*)rcp_dict_node_data(dict_type, node);
 }
 
 int rcp_int8_compare(
@@ -59,6 +126,19 @@ int rcp_int8_compare(
 	return 0;
 }
 
+int8_t rcp_record_as_int8(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_int8_type)
+		return 0;
+	return *(int8_t*)rcp_record_data(rec);
+}
+
+int8_t rcp_dict_node_as_int8(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_int8_type)
+		return 0;
+	return *(int8_t*)rcp_dict_node_data(dict_type, node);
+}
+
 int rcp_int16_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r){
 	if (*(int16_t*)l<*(int16_t*)r)
@@ -66,6 +146,19 @@ int rcp_int16_compare(
 	if (*(int16_t*)l>*(int16_t*)r)
 		return +1;
 	return 0;
+}
+
+int16_t rcp_record_as_int16(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_int16_type)
+		return 0;
+	return *(int16_t*)rcp_record_data(rec);
+}
+
+int16_t rcp_dict_node_as_int16(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_int16_type)
+		return 0;
+	return *(int16_t*)rcp_dict_node_data(dict_type, node);
 }
 
 int rcp_int32_compare(
@@ -77,6 +170,19 @@ int rcp_int32_compare(
 	return 0;
 }
 
+int32_t rcp_record_as_int32(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_int32_type)
+		return 0;
+	return *(int32_t*)rcp_record_data(rec);
+}
+
+int32_t rcp_dict_node_as_int32(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_int32_type)
+		return 0;
+	return *(int32_t*)rcp_dict_node_data(dict_type, node);
+}
+
 int rcp_int64_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r){
 	if (*(int64_t*)l<*(int64_t*)r)
@@ -84,6 +190,19 @@ int rcp_int64_compare(
 	if (*(int64_t*)l>*(int64_t*)r)
 		return +1;
 	return 0;
+}
+
+int64_t rcp_record_as_int64(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_int64_type)
+		return 0;
+	return *(int64_t*)rcp_record_data(rec);
+}
+
+int64_t rcp_dict_node_as_int64(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_int64_type)
+		return 0;
+	return *(int64_t*)rcp_dict_node_data(dict_type, node);
 }
 
 int rcp_float_compare(
@@ -95,6 +214,19 @@ int rcp_float_compare(
 	return 0;
 }
 
+float rcp_record_as_float(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_float_type)
+		return 0;
+	return *(float*)rcp_record_data(rec);
+}
+
+float rcp_dict_node_as_float(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_float_type)
+		return 0;
+	return *(float*)rcp_dict_node_data(dict_type, node);
+}
+
 int rcp_double_compare(
 		rcp_type_ref ex, rcp_data_ref l, rcp_data_ref r){
 	if (*(double*)l<*(double*)r)
@@ -102,4 +234,17 @@ int rcp_double_compare(
 	if (*(double*)l>*(double*)r)
 		return +1;
 	return 0;
+}
+
+double rcp_record_as_double(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_double_type)
+		return 0;
+	return *(double*)rcp_record_data(rec);
+}
+
+double rcp_dict_node_as_double(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_double_type)
+		return 0;
+	return *(double*)rcp_dict_node_data(dict_type, node);
 }

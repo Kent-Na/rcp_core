@@ -183,6 +183,15 @@ void rcp_dict_unset_node(rcp_dict_ref dict, rcp_dict_node_ref node)
 	rcp_tree_remove((rcp_tree_ref)dict, (rcp_tree_node_ref)node);
 }
 
+rcp_dict_ref rcp_record_as_dict(rcp_record_ref rec){
+	return (rcp_dict_ref)rcp_record_data(rec);
+}
+
+rcp_dict_ref rcp_dict_node_as_dict(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	return (rcp_dict_ref)rcp_dict_node_data(dict_type, node);
+}
+
 ///
 //dict node
 //

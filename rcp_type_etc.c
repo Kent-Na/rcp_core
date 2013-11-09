@@ -5,6 +5,7 @@
 
 #include "rcp_type.h"
 #include "rcp_record.h"
+#include "rcp_dict.h"
 #include "rcp_type_list.h"
 
 
@@ -52,4 +53,17 @@ void rcp_ref_at(rcp_type_ref *io_type, rcp_data_ref *io_data,
 	*io_type = rcp_record_type(rec);
 	*io_data = rcp_record_data(rec);
 	rcp_at(io_type, io_data, key_type, key_data);
+}
+
+rcp_record_ref rcp_record_as_ref(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_ref_type)
+		return NULL;
+	return *(rcp_record_ref*)rcp_record_data(rec);
+}
+
+rcp_record_ref rcp_dict_node_as_ref(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_ref_type)
+		return NULL;
+	return *(rcp_record_ref*)rcp_dict_node_data(dict_type, node);
 }

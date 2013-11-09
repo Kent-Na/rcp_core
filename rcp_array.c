@@ -1,14 +1,15 @@
 #include "rcp_type_pch.h"
 #include "rcp_utility.h"
 
+#include "rcp_type_list.h"
+#include "rcp_type_utility.h"
+#include "rcp_record.h"
+#include "rcp_dict.h"
+	
 #define RCP_INTERNAL_STRUCTURE
 #include "rcp_type.h"
 #include "rcp_array.h"
 
-#include "rcp_type_list.h"
-#include "rcp_type_utility.h"
-#include "rcp_record.h"
-	
 rcp_type_ref rcp_array_type_data_type(rcp_type_ref type)
 {
 	return ((struct rcp_type_array_ext*)(type+1))->data_type;
@@ -312,6 +313,16 @@ rcp_extern rcp_data_ref rcp_array_last(
 	return array->array +
 		rcp_array_type_data_type(array_type)->size*(array->data_count-1);
 }
+
+rcp_array_ref rcp_record_as_array(rcp_record_ref rec){
+	return (rcp_array_ref)rcp_record_data(rec);
+}
+
+rcp_array_ref rcp_dict_node_as_array(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	return (rcp_array_ref)rcp_dict_node_data(dict_type, node);
+}
+
 rcp_array_iterater_ref rcp_array_begin(rcp_array_ref array)
 {
 	if (array->data_count)

@@ -4,6 +4,8 @@
 #include "rcp_type.h"
 #include "rcp_type_list.h"
 
+#include "rcp_dict.h"
+
 #define RCP_INTERNAL_STRUCTURE
 #include "rcp_string.h"
 
@@ -124,3 +126,15 @@ void rcp_string_set_c_str(rcp_string_ref str, const char* c_str)
 	rcp_string_init_with_c_str(core, c_str);
 }
 
+rcp_string_ref rcp_record_as_string(rcp_record_ref rec){
+	if (rcp_record_type(rec) != rcp_string_type)
+		return NULL;
+	return (rcp_string_ref)rcp_record_data(rec);
+}
+
+rcp_string_ref rcp_dict_node_as_string(
+		rcp_type_ref dict_type, rcp_dict_node_ref node){
+	if (rcp_dict_type_data_type(dict_type) != rcp_string_type)
+		return NULL;
+	return (rcp_string_ref)rcp_dict_node_data(dict_type, node);
+}
