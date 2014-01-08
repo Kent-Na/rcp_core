@@ -209,7 +209,7 @@ rcp_extern int8_t rcp_array_replace(
 				input_array->array,
 				input_array->data_count*data_type->size);
         int i;
-		for (i = 0; i<target_array->data_count; i++){
+		for (i = 0; i<input_array->data_count; i++){
 			rcp_copied(data_type, 
 				target_array->array+(range_begin+i)*data_type->size);
 		}

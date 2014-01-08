@@ -71,16 +71,22 @@ void rcp_record_delete(rcp_record_ref rec)
 
 rcp_type_ref rcp_record_type(rcp_record_ref rec)
 {
+	if (!rec)
+		return NULL;
 	return rec->type;
 }
 
 rcp_data_ref rcp_record_data(rcp_record_ref rec)
 {
+	if (!rec)
+		return NULL;
 	return (rcp_data_ref)(rec + 1);
 }
 
 uint32_t rcp_record_ref_count(rcp_record_ref rec)
 {
+	if (!rec)
+		return 0;
 	return rec->ref_count;
 }
 
