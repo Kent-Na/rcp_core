@@ -1,3 +1,4 @@
+#include <stdarg.h>
 #include "def/rcp_string.h"
 #include "def/rcp_type.h"
 #include "def/rcp_data.h"
@@ -15,6 +16,8 @@ struct rcp_string_core{
 rcp_extern rcp_record_ref rcp_string_new_rec(const char* c_str);
 
 rcp_extern rcp_string_ref rcp_string_new(const char* c_str);
+rcp_extern rcp_string_ref rcp_string_new_with_format(
+		const char* format, ...);
 rcp_extern void rcp_string_delete(rcp_string_ref str);
 
 void rcp_string_init(rcp_type_ref type, rcp_data_ref data);
@@ -27,6 +30,10 @@ int rcp_string_compare(
 
 rcp_extern void rcp_string_init_with_c_str(
 		rcp_string_ref data, const char *str);
+rcp_extern void rcp_string_init_with_format(
+		rcp_string_ref data, const char *format, ...);
+rcp_extern void rcp_string_init_with_format_args(
+		rcp_string_ref data, const char *format, va_list args);
 rcp_extern const char *rcp_string_c_str(rcp_string_ref str);
 rcp_extern size_t rcp_string_c_str_len(rcp_string_ref str);
 rcp_extern void rcp_string_put(rcp_string_ref str, char ch);

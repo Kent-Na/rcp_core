@@ -2,7 +2,6 @@ env = Environment()
 Import('env')
 
 main =[
-	'rcp_utility.c',
 	'rcp_tree.c',
 	'rcp_type.c',
 	'rcp_record.c',
@@ -17,6 +16,7 @@ main =[
 	'rcp_struct.c',
 	'rcp_type_etc.c',
 	'rcp_alias.c',
+	'rcp_parser.c',
 	'rcp_json.c',
 	'rcp_json_write.c',
 	]

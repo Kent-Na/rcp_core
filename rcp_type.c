@@ -48,7 +48,6 @@ void rcp_default_deinit(rcp_type_ref type, rcp_data_ref data){ }
 void rcp_default_copied(rcp_type_ref type, rcp_data_ref data){ }
 int  rcp_default_compare(
         rcp_type_ref type, rcp_data_ref l, rcp_data_ref r){ 
-    rcp_error("missing implementation of \"compare\".");
     return 0;
 }
 void rcp_default_write_json(

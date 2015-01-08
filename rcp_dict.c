@@ -54,16 +54,35 @@ void rcp_dict_deinit(rcp_type_ref type, rcp_data_ref data)
 {
 	rcp_dict_node_ref node = rcp_dict_begin((rcp_dict_ref)data);
 	while(node){
+		rcp_dict_node_ref next = rcp_dict_node_next(node);
 		rcp_dict_node_deinit(type, node);
-		node = rcp_dict_node_next(node);
+		node = next;
 	}
 	rcp_tree_deinit((rcp_tree_ref)data);
 }
 
 void rcp_dict_copied(rcp_type_ref type, rcp_data_ref data)
 {
-    rcp_error("Can not copy rcp_dict.");
+	struct rcp_tree_core original;
+	memcpy(&original, data, sizeof original);
+
     rcp_dict_init(type, data);
+
+	rcp_dict_node_ref o_node = rcp_dict_begin((rcp_dict_ref)&original);
+	rcp_type_ref key_type = rcp_dict_type_key_type(type);
+	rcp_type_ref data_type = rcp_dict_type_data_type(type);
+	size_t contents_size = key_type->size + data_type->size;
+
+	while(o_node){
+		rcp_dict_node_ref node = rcp_dict_node_new(type);
+		memcpy(rcp_dict_node_key(type, node),
+				rcp_dict_node_key(type, o_node), contents_size);
+		rcp_copied(key_type, rcp_dict_node_key(type, node));
+		rcp_copied(data_type, rcp_dict_node_data(type, node));
+		rcp_dict_set_node((rcp_dict_ref)data, node);
+
+		o_node = rcp_dict_node_next(o_node);
+	}
 }
 
 void rcp_dict_at(
@@ -76,13 +95,12 @@ void rcp_dict_at(
 	*io_type = NULL;
 	*io_data = NULL;
 
-	rcp_assert(key_type == rcp_dict_type_key_type(dict_type),
-			"bad key type");
+	if (key_type != rcp_dict_type_key_type(dict_type)) return;
 
 	rcp_dict_node_ref node;
 	node = rcp_dict_find(dict, key_data);
 
-	rcp_assert(node, "key is missing");
+	if (! node) return;
 
 	*io_type = rcp_dict_type_data_type(dict_type);
 	*io_data = rcp_dict_node_data(dict_type, node);

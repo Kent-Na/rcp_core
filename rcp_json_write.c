@@ -206,7 +206,7 @@ void rcp_dict_write_json(rcp_type_ref type,
 	const rcp_type_ref data_type = rcp_dict_type_data_type(type);
 
 	if (key_type != rcp_string_type){
-		rcp_error("json:dict key type");
+		//Key of the dictionaly must be string.
 		return;
 	}
 

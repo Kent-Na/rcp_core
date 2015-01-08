@@ -8,7 +8,7 @@
 #include "rcp_tree.h"
 #include "rcp_dict.h"
 
-
+//This shoul'd called as rcp_dict_type_core
 struct rcp_dict_core{
 	struct rcp_type_core core;
 	struct rcp_type_dict_ext ext;
@@ -47,6 +47,8 @@ RCP_DICT_TEMPLATE(rcp_str_uint64_dict_def,
 		&rcp_string_type_def, &rcp_uint64_type_def);
 RCP_DICT_TEMPLATE(rcp_str_ptr_dict_def, 
 		&rcp_string_type_def, &rcp_pointer_type_def);
+RCP_DICT_TEMPLATE(rcp_ref_null_dict_def, 
+		&rcp_ref_type_def, &rcp_null_type_def);
 
 const rcp_type_ref rcp_int64_ref_dict = 
 	&rcp_int64_ref_dict_def.core;
@@ -58,3 +60,5 @@ const rcp_type_ref rcp_str_ref_dict =
 	&rcp_str_ref_dict_def.core;
 const rcp_type_ref rcp_str_ptr_dict = 
 	&rcp_str_ptr_dict_def.core;
+const rcp_type_ref rcp_ref_null_dict = 
+	&rcp_ref_null_dict_def.core;

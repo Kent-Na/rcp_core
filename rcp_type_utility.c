@@ -16,29 +16,19 @@ rcp_extern rcp_record_ref rcp_dict_find_c_str(
 		rcp_type_ref dict_type, rcp_dict_ref dict, 
 		const char *key, rcp_type_ref type)
 {
-
-#ifdef RCP_SELF_TEST
-	if (rcp_dict_type_key_type(dict_type) != rcp_string_type){
-		rcp_error("dict value type");
-		return NULL;
-	}
-	if (rcp_dict_type_data_type(dict_type) != rcp_ref_type){
-		rcp_error("dict value type");
-		return NULL;
-	}
-#endif
+	if (dict_type != rcp_str_ref_dict) return NULL;
 
 	rcp_string_ref str = rcp_string_new(key);
 	rcp_dict_node_ref node = rcp_dict_find(dict, (rcp_data_ref)str);
 	rcp_string_delete(str);
 	if (!node){
-		rcp_caution("not found");
+		//Not found
 		return NULL;
 	}
 	rcp_record_ref rec = *(rcp_record_ref*)
 		rcp_dict_node_data(dict_type, node);
 	if (type && rcp_record_type(rec) != type){
-		rcp_caution("not this type");
+		//Type missmatch
 		return NULL;
 	}
 	return rec;
@@ -47,16 +37,7 @@ rcp_extern void rcp_dict_to_struct(
 		rcp_type_ref in_type, rcp_dict_ref in,
 		rcp_type_ref out_type, rcp_struct_ref out)
 {
-#ifdef RCP_SELF_TEST
-	if (rcp_dict_type_key_type(in_type) != rcp_string_type){
-		rcp_error("dict value type");
-		return;
-	}
-	if (rcp_dict_type_data_type(in_type) != rcp_ref_type){
-		rcp_error("dict value type");
-		return;
-	}
-#endif
+	if (in_type != rcp_str_ref_dict) return;
 
 	rcp_dict_node_ref node = rcp_dict_begin(in);
 	rcp_struct_param_ref param = rcp_struct_type_begin(out_type);
@@ -89,9 +70,9 @@ rcp_extern void rcp_dict_to_struct(
 				rcp_data_ref dst = rcp_struct_data(out, param);
 				rcp_copy(param_type, src, dst);
 			}
-			else{
-				rcp_caution("type missmatch");
-			}
+			//else{
+				//Type missmatch
+			//}
 			node = rcp_dict_node_next(node);
 			param = rcp_struct_param_next(out_type, param);
 			if (!node || !param)

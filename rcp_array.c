@@ -128,8 +128,8 @@ void rcp_array_at(
 	*io_data = NULL;
 	*io_type = NULL;
 
-	rcp_assert(array_type, "null_type");
-	rcp_assert(array, "null_data");
+	if (! array_type) return;
+	if (! array) return;
 
 	if (rcp_type_is_uint(key_type)){
 		uint64_t idx = rcp_uint_as_uint(key_type, key_data);
@@ -174,7 +174,6 @@ rcp_extern int8_t rcp_array_replace(
 	int i;
 
 	if (!rcp_array_owning_data(target_array)){
-		rcp_error("array append");
 		return -1;
 	}
 
@@ -259,7 +258,7 @@ rcp_extern void rcp_array_append_data(
 {
 	rcp_type_ref data_type = rcp_array_type_data_type(array_type);
 	if (!rcp_array_owning_data(array)){
-		rcp_error("array append");
+		//Adding data to array with extra data refarence are not allowed.
 		return;
 	}
 	rcp_array_resize(array_type, array, array->data_count+1);

@@ -11,11 +11,6 @@ struct rcp_record_core{
 };
 #endif
 
-
-#define RCP_REC_FRAG_ACTIVE (1<<0)
-#define RCP_REC_FRAG_OWNED (1<<1)
-#define RCP_REC_FRAG_TAGED (1<<2)
-
 rcp_extern rcp_record_ref rcp_record_new(rcp_type_ref type);
 rcp_extern rcp_record_ref rcp_record_new_with(
 		rcp_type_ref type, rcp_data_ref data);

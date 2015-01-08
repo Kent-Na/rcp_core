@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "rcp_type_pch.h"
 #include "rcp_utility.h"
 #include "rcp_record.h"
@@ -23,6 +24,19 @@ rcp_string_ref rcp_string_new(const char *c_str)
 	rcp_string_init_with_c_str(str, c_str);
 	return str;
 }
+
+rcp_string_ref rcp_string_new_with_format(const char *format, ...)
+{
+	rcp_string_ref str = (rcp_string_ref)rcp_alloc(rcp_string_type);
+
+	va_list args;
+	va_start(args, format);
+	rcp_string_init_with_format_args(str, format, args);
+	va_end(args);
+
+	return str;
+}
+
 rcp_extern void rcp_string_delete(rcp_string_ref str)
 {
 	if (!str)
@@ -79,6 +93,30 @@ void rcp_string_init_with_c_str(
 
 	core->size = len;
 	core->count = len;
+}
+
+void rcp_string_init_with_format(
+		rcp_string_ref str, const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	rcp_string_init_with_format_args(str, format, args);
+	va_end(args);
+}
+
+void rcp_string_init_with_format_args(
+		rcp_string_ref str, const char* format, va_list args)
+{
+	va_list args_copy;
+	va_copy(args_copy, args);
+	int len = vsnprintf(NULL, 0, format, args_copy);
+	va_end(args_copy);
+
+	str->str = malloc(len);
+	str->size = len;
+	str->count = len;
+
+	vsnprintf(str->str, len, format, args);
 }
 
 const char *rcp_string_type_c_str(void *str)

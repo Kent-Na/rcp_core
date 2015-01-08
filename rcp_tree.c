@@ -134,85 +134,6 @@ rcp_extern rcp_tree_node_ref rcp_tree_find(rcp_tree_ref tree, void *key)
 	}
 }
 
-rcp_extern void rcp_tree_node_verify(rcp_tree_ref tree,
-		rcp_tree_node_ref node, int b_depth, int c_b_depth)
-{
-	if (node->color == RCP_TREE_RED){
-		if (node->l && node->l->color == RCP_TREE_RED)
-			rcp_error("tree:red have red l");
-		if (node->r && node->r->color == RCP_TREE_RED)
-			rcp_error("tree:red have red r");
-	}
-	void *ex = tree->extra_data;
-	void *dat = rcp_tree_node_data(node);
-	//	
-	void *ldat;
-	if (node->l)
-		ldat = rcp_tree_node_data(node->l);
-	if (node->l && ! (tree->compare(ex,ldat,dat)<0))
-		rcp_error("tree:comp l");
-
-	void *rdat;
-	if (node->r)
-		rdat = rcp_tree_node_data(node->r);
-	if (node->r && ! (tree->compare(ex,dat,rdat)<0))
-		rcp_error("tree:comp r");
-	//
-	if (node->l)
-		if (node->l->p != node)
-			rcp_error("tree:p l");
-	if (node->r)
-		if (node->r->p != node)
-			rcp_error("tree:p r");
-	//
-	int black_depth = c_b_depth;
-	if (node->color == RCP_TREE_BRACK)
-		black_depth ++;
-
-	if (! node->l)
-		if (black_depth + 1 != b_depth)
-			rcp_error("tree:b_depth l");
-
-	if (! node->r)
-		if (black_depth + 1 != b_depth)
-			rcp_error("tree:b_depth r");
-	//
-
-	if (node->l)
-		rcp_tree_node_verify(tree, node->l, b_depth, black_depth);
-
-	if (node->r)
-		rcp_tree_node_verify(tree, node->r, b_depth, black_depth);
-}
-
-rcp_extern void rcp_tree_verify(rcp_tree_ref tree)
-{
-	if (tree == NULL)
-		return;
-	if (tree->root == NULL)
-		return;
-
-	struct rcp_tree_node_core *cur = tree->root;
-	if (cur->color == RCP_TREE_RED)
-		rcp_error("tree:red root");
-
-	if (tree->root->p != NULL)
-		rcp_error("tree:root p");
-
-	struct rcp_tree_node_core *l= tree->root;
-	int black_depth = 1;//count root node
-
-	while (l->l){
-		l = l->l;
-		if (l->color == RCP_TREE_BRACK)
-			black_depth ++;
-	}
-	//count last NULL node
-	black_depth ++;
-
-	rcp_tree_node_verify(tree, cur, black_depth, 0);
-}
-
 rcp_extern rcp_tree_node_ref rcp_tree_put(
 		rcp_tree_ref tree, rcp_tree_node_ref node, int replace)
 {
@@ -221,13 +142,6 @@ rcp_extern rcp_tree_node_ref rcp_tree_put(
 	}
 	struct rcp_tree_node_core *cur = tree->root;
 	struct rcp_tree_node_core *new = node;
-
-#ifdef RCP_SELF_TEST
-	if (new->l != NULL || new->r != NULL ||
-			new->p != NULL || new->color != RCP_TREE_RED){
-		rcp_error("tree_push");
-	}
-#endif
 
 	if (tree->root == NULL){
 		new->color = RCP_TREE_BRACK;
@@ -258,12 +172,12 @@ rcp_extern rcp_tree_node_ref rcp_tree_put(
 			cur = cur->r;
 		}
 		else{
+			//Node with same value are already existed.
 			if (replace){
 				rcp_tree_node_replace(tree, cur, node);
 				return cur;
 			}
 			else{
-				rcp_error("tree:key");
 				return node;
 			}
 		}
@@ -359,7 +273,6 @@ rcp_extern void rcp_tree_remove(
 		rcp_tree_ref tree, rcp_tree_node_ref node)
 {
 	if (node == NULL){
-		rcp_error("tree: no key");
 		return;
 	}
 
@@ -731,7 +644,7 @@ rcp_extern void rcp_tree_remove(
 				continue;
 			}
 		}
-		rcp_caution("go to inf");
+		//Never reach here
 		return;
 	}
 
@@ -739,8 +652,8 @@ rcp_extern void rcp_tree_remove(
 		node->p->r = NULL;
 	else if (node->p->l == node)
 		node->p->l = NULL;
-	else
-		rcp_error("errrrrerrererrererer");
+	//else
+		//Never reach here
 }
 
 

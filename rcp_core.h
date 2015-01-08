@@ -1,5 +1,7 @@
 //////////////
 //rcp core main header
+#include <stdint.h>
+#include <stdio.h>
 
 #include "rcp_utility.h"
 
@@ -18,6 +20,7 @@
 #include "rcp_array_list.h"
 #include "rcp_dict_list.h"
 
+#include "rcp_parser.h"
 #include "rcp_json.h"
 #include "rcp_json_write.h"
 #include "rcp_type_utility.h"

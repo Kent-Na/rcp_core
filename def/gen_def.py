@@ -17,6 +17,8 @@ typeList = [
 
 	'struct',
 	'struct_param',
+	
+	'parser',
 ]
 
 template = """

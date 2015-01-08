@@ -44,8 +44,6 @@ void rcp_record_release(rcp_record_ref rec)
 {
 	if (!rec)
 		return;
-	if (rec->frags & RCP_REC_FRAG_TAGED)
-		rcp_error("releasing taged record");
 	rec->ref_count --;
 	if (!rec->ref_count)
 		rcp_record_delete(rec);
@@ -90,7 +88,3 @@ uint32_t rcp_record_ref_count(rcp_record_ref rec)
 	return rec->ref_count;
 }
 
-void rcp_record_tag(rcp_record_ref rec)
-{
-	rec->frags |= RCP_REC_FRAG_TAGED;
-}

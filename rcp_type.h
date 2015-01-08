@@ -6,8 +6,8 @@
 #ifdef RCP_INTERNAL_STRUCTURE
 struct rcp_type_core{
 	size_t size;
-	uint16_t type_id;
-	rcp_string_ref type_name;
+	uint16_t type_id;//unused
+	rcp_string_ref type_name;//maybe NULL
 
 	//It is allowed to re-init data just after init. but not when modefied
 	//or init with extra data like "init_with_c_str".

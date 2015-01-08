@@ -1,5 +1,6 @@
 #include "def/rcp_record.h"
 #include "def/rcp_string.h"
+#include "def/rcp_parser.h"
 
 //type table
 //json		<->		rcp
@@ -13,19 +14,32 @@
 
 //object	<--		struct
 
+
+rcp_extern rcp_record_ref rcp_json_parse_c_str(
+		const char* begin, const char* end);
+
+rcp_extern rcp_record_ref rcp_json_parse_c_str_and_print_error(
+		const char* begin, const char* end);
+
+rcp_extern rcp_parser_ref rcp_json_parser_new(
+		const char* begin, const char* end);
+
+rcp_extern void rcp_json_parser_delete(rcp_parser_ref parser);
+
 rcp_extern rcp_record_ref rcp_json_parse(
-		const char **begin, const char *end);
+		rcp_parser_ref parser);
 
 rcp_extern rcp_record_ref rcp_json_parse_object(
-		const char **begin, const char *end);
+		rcp_parser_ref parser);
 rcp_extern rcp_record_ref rcp_json_parse_array(
-		const char **begin, const char *end);
+		rcp_parser_ref parser);
 
 rcp_extern rcp_record_ref rcp_json_parse_string(
-		const char **begin, const char *end);
+		rcp_parser_ref parser);
 
-rcp_extern int rcp_json_parse_literal(const char **begin, const char *end, 
+rcp_extern int rcp_json_parse_literal(
+		rcp_parser_ref parser,
 		const char *literal);
 
 rcp_extern rcp_record_ref rcp_json_parse_number(
-		const char** begin, const char* end);
+		rcp_parser_ref parser);
