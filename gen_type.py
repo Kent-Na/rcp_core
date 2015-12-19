@@ -14,7 +14,7 @@ typeTable = [
 	[0,	    'null', 	None,               '0',
 	 False,	False, False, False,  True, False, False, False, False],
 	[1,		'ref',		'rcp_record_ref',	'sizeof(rcp_record_ref*)',
-	  True,	 True,  True, False,  True,  True, False, False, False],
+	  True,	 True,  True,  True,  True,  True, False, False, False],
 
 #for internal use
 	[2,		'pointer',	'void*',	        'sizeof(void*)',

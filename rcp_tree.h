@@ -47,3 +47,4 @@ rcp_extern rcp_tree_node_ref rcp_tree_put(
 		rcp_tree_ref tree, rcp_tree_node_ref node, int replace);
 
 rcp_extern void rcp_tree_remove(rcp_tree_ref tree, rcp_tree_node_ref node);
+rcp_extern int rcp_tree_is_empty(rcp_tree_ref tree);

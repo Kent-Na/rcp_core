@@ -46,6 +46,14 @@ void rcp_ref_copy(
 	*dst_rec = *src_rec;
 }
 
+int  rcp_ref_compare(rcp_type_ref type, rcp_data_ref l, rcp_data_ref r)
+{
+	if (*(rcp_record_ref*)l<*(rcp_record_ref*)r)
+		return -1;
+	if (*(rcp_record_ref*)l>*(rcp_record_ref*)r)
+		return +1;
+	return 0;
+}
 void rcp_ref_at(rcp_type_ref *io_type, rcp_data_ref *io_data,
 		rcp_type_ref key_type, rcp_data_ref key_data)
 {

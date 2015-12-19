@@ -63,6 +63,9 @@ rcp_extern void rcp_move(rcp_type_ref type,
 rcp_extern void rcp_copy(rcp_type_ref type,
 		rcp_data_ref src, rcp_data_ref dst);
 
+//Deinit then init data.
+rcp_extern void rcp_reset(rcp_type_ref type, rcp_data_ref data);
+
 //For internal. Usualy you don't need to call this.
 rcp_extern void rcp_copied(rcp_type_ref type, 
         rcp_data_ref data);

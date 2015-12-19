@@ -85,6 +85,12 @@ void rcp_copy(rcp_type_ref type, rcp_data_ref src, rcp_data_ref dst)
 	type->copied(type, dst);
 }
 
+void rcp_reset(rcp_type_ref type, rcp_data_ref data)
+{
+	rcp_deinit(type, data);
+	rcp_init(type, data);
+}
+
 rcp_extern void rcp_init(rcp_type_ref type,
 		rcp_data_ref data)
 {

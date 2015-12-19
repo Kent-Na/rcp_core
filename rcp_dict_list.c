@@ -7,35 +7,7 @@
 #include "rcp_type_list.h"
 #include "rcp_tree.h"
 #include "rcp_dict.h"
-
-//This shoul'd called as rcp_dict_type_core
-struct rcp_dict_core{
-	struct rcp_type_core core;
-	struct rcp_type_dict_ext ext;
-};
-
-#define RCP_DICT_TEMPLATEA \
-	{\
-		sizeof(struct rcp_tree_core),\
-		0,\
-		NULL,\
-		rcp_dict_init,\
-		rcp_dict_deinit,\
-		rcp_dict_copied,\
-		rcp_default_compare,\
-		rcp_dict_write_json,\
-		rcp_dict_at,\
-		rcp_default_replace,\
-		rcp_dict_merge,\
-		rcp_dict_unset,\
-	}
-
-#define RCP_DICT_TEMPLATEB(key,data) \
-	{RCP_DICT_TEMPLATEA,{(key),(data)}}
-
-#define RCP_DICT_TEMPLATE(name,key,data) \
-	struct rcp_dict_core name = RCP_DICT_TEMPLATEB(key,data);
-
+#include "rcp_dict_list.h"
 
 RCP_DICT_TEMPLATE(rcp_int64_ref_dict_def, 
 		&rcp_int64_type_def, &rcp_ref_type_def);
@@ -47,8 +19,14 @@ RCP_DICT_TEMPLATE(rcp_str_uint64_dict_def,
 		&rcp_string_type_def, &rcp_uint64_type_def);
 RCP_DICT_TEMPLATE(rcp_str_ptr_dict_def, 
 		&rcp_string_type_def, &rcp_pointer_type_def);
+RCP_DICT_TEMPLATE(rcp_str_str_dict_def, 
+		&rcp_string_type_def, &rcp_string_type_def);
+RCP_DICT_TEMPLATE(rcp_uint32_null_dict_def, 
+		&rcp_uint32_type_def, &rcp_null_type_def);
 RCP_DICT_TEMPLATE(rcp_ref_null_dict_def, 
 		&rcp_ref_type_def, &rcp_null_type_def);
+RCP_DICT_TEMPLATE(rcp_ptr_null_dict_def, 
+		&rcp_pointer_type_def, &rcp_null_type_def);
 
 const rcp_type_ref rcp_int64_ref_dict = 
 	&rcp_int64_ref_dict_def.core;
@@ -60,5 +38,11 @@ const rcp_type_ref rcp_str_ref_dict =
 	&rcp_str_ref_dict_def.core;
 const rcp_type_ref rcp_str_ptr_dict = 
 	&rcp_str_ptr_dict_def.core;
+const rcp_type_ref rcp_str_str_dict = 
+	&rcp_str_str_dict_def.core;
+const rcp_type_ref rcp_uint32_null_dict = 
+	&rcp_uint32_null_dict_def.core;
 const rcp_type_ref rcp_ref_null_dict = 
 	&rcp_ref_null_dict_def.core;
+const rcp_type_ref rcp_ptr_null_dict = 
+	&rcp_ptr_null_dict_def.core;

@@ -657,3 +657,6 @@ rcp_extern void rcp_tree_remove(
 }
 
 
+rcp_extern int rcp_tree_is_empty(rcp_tree_ref tree){
+	return tree->root == NULL;
+}

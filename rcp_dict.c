@@ -58,6 +58,7 @@ void rcp_dict_deinit(rcp_type_ref type, rcp_data_ref data)
 		rcp_dict_node_deinit(type, node);
 		node = next;
 	}
+	//Nodes will be deallocated by this function.
 	rcp_tree_deinit((rcp_tree_ref)data);
 }
 
@@ -199,6 +200,12 @@ rcp_extern
 void rcp_dict_unset_node(rcp_dict_ref dict, rcp_dict_node_ref node)
 {
 	rcp_tree_remove((rcp_tree_ref)dict, (rcp_tree_node_ref)node);
+}
+
+rcp_extern
+int rcp_dict_is_empty(rcp_dict_ref dict)
+{
+	return rcp_tree_is_empty((rcp_tree_ref)dict);
 }
 
 rcp_dict_ref rcp_record_as_dict(rcp_record_ref rec){

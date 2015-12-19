@@ -30,7 +30,7 @@ struct rcp_type_core rcp_ref_type_def = {
 	rcp_ref_init,
 	rcp_ref_deinit,
 	rcp_ref_copied,
-	rcp_default_compare,
+	rcp_ref_compare,
 	rcp_ref_write_json,
 	rcp_ref_at,
 	rcp_default_replace,
